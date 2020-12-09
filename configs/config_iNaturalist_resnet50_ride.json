@@ -1,0 +1,64 @@
+{
+    "name": "iNaturalist_ResNet50_RIDE",
+    "n_gpu": 8,
+
+    "arch": {
+        "type": "ResNet50Model",
+        "args": {
+            "num_classes": 8142,
+            "reduce_dimension": true,
+            "use_norm": true,
+            "returns_feat": true,
+            "num_experts": 3
+        }
+    },
+    "data_loader": {
+        "type": "iNaturalistDataLoader",
+        "args":{
+            "data_dir": "data/iNaturalist18",
+            "batch_size": 512,
+            "shuffle": true,
+            "num_workers": 24
+        }
+    },
+    "optimizer": {
+        "type": "SGD",
+        "args":{
+            "lr": 0.2,
+            "weight_decay": 2e-4,
+            "momentum": 0.9,
+            "nesterov": true
+        }
+    },
+    "add_extra_info": true,
+    "loss": {
+        "type": "RIDELoss",
+        "args": {
+            "reweight": true,
+            "reweight_factor": 0.015,
+            "reweight_epoch": 80
+        }
+    },
+    "metrics": [
+        "accuracy"
+    ],
+    "lr_scheduler": {
+        "type": "CustomLR",
+        "args": {
+            "step1": 60,
+            "step2": 80,
+            "gamma": 0.1,
+            "warmup_epoch": 5
+        }
+    },
+    "trainer": {
+        "epochs": 100,
+
+        "save_dir": "saved/",
+        "save_period": 100,
+        "verbosity": 2,
+        
+        "monitor": "max val_accuracy",
+        "tensorboard": false
+    }
+}

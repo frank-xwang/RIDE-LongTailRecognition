@@ -1,0 +1,63 @@
+{
+    "name": "Imbalance_CIFAR100_LT_RIDE",
+    "n_gpu": 1,
+
+    "arch": {
+        "type": "ResNet32Model",
+        "args": {
+            "num_classes": 100,
+            "reduce_dimension": true,
+            "use_norm": true,
+            "num_experts": 6
+        }
+    },
+    "data_loader": {
+        "type": "ImbalanceCIFAR100DataLoader",
+        "args":{
+            "data_dir": "data",
+            "batch_size": 128,
+            "shuffle": true,
+            "num_workers": 2
+        }
+    },
+    "optimizer": {
+        "type": "SGD",
+        "args":{
+            "lr": 0.1,
+            "weight_decay": 5e-4,
+            "momentum": 0.9,
+            "nesterov": true
+        }
+    },
+    "add_extra_info": true,
+    "loss": {
+        "type": "RIDELoss",
+        "args": {
+            "additional_diversity_factor": 0.1,
+            "reweight": true,
+            "reweight_epoch": 160
+        }
+    },
+    "metrics": [
+        "accuracy"
+    ],
+    "lr_scheduler": {
+        "type": "CustomLR",
+        "args": {
+            "step1": 160,
+            "step2": 180,
+            "gamma": 0.01,
+            "warmup_epoch": 5
+        }
+    },
+    "trainer": {
+        "epochs": 200,
+
+        "save_dir": "saved/",
+        "save_period": 40,
+        "verbosity": 2,
+        
+        "monitor": "max val_accuracy",
+        "tensorboard": false
+    }
+}

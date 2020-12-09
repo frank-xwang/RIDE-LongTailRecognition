@@ -1,5 +1,6 @@
-torch>=1.1
+torch>=1.6
 torchvision
 numpy
 tqdm
+pandas
 tensorboard>=1.14

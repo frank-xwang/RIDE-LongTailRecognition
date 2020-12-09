@@ -1,0 +1,59 @@
+{
+    "name": "ImageNet_LT_ResNeXt50_RIDE",
+    "n_gpu": 1,
+
+    "arch": {
+        "type": "ResNeXt50EAModel",
+        "args": {
+            "num_classes": 1000,
+            "reduce_dimension": true,
+            "num_experts": 3,
+            "top_choices_num": 50,
+            "use_norm": true,
+            "pos_weight": 1e2
+        }
+    },
+    "data_loader": {
+        "type": "ImageNetLTDataLoader",
+        "args":{
+            "data_dir": "data/ImageNet_LT",
+            "batch_size": 512,
+            "shuffle": true,
+            "num_workers": 12,
+            "balanced": true
+        }
+    },
+    "optimizer": {
+        "type": "SGD",
+        "args":{
+            "lr": 0.01,
+            "weight_decay": 5e-4,
+            "momentum": 0.9,
+            "nesterov": true
+        }
+    },
+    "loss": {
+        "type": "CrossEntropyLoss"
+    },
+    "metrics": [
+        "accuracy", "top_k_acc"
+    ],
+    "lr_scheduler": {
+        "type": "CosineAnnealingLR",
+        "args": {
+            "T_max": 5,
+            "eta_min": 0.0
+        }
+    },
+    "resume_state_dict_only": true,
+    "trainer": {
+        "epochs": 5,
+
+        "save_dir": "saved/",
+        "save_period": 5,
+        "verbosity": 2,
+        
+        "monitor": "max val_accuracy",
+        "tensorboard": false
+    }
+}
