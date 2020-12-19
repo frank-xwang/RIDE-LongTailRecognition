@@ -1,6 +1,6 @@
 # RIDE: Long-tailed Recognition by Routing Diverse Distribution-Aware Experts
 
-Xudong Wang, Long Lian, Zhongqi Miao, Ziwei Liu, Stella X. Yu from UC Berkeley/ICSI and NTU
+by Xudong Wang, Long Lian, Zhongqi Miao, Ziwei Liu, Stella X. Yu at UC Berkeley/ICSI and NTU
 
 [Project Page](http://people.eecs.berkeley.edu/~xdwang/projects/RIDE/) | [PDF](http://people.eecs.berkeley.edu/~xdwang/papers/RIDE.pdf) | 
 [Preprint](https://arxiv.org/abs/2010.01809) | [citation](#citation)
