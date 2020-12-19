@@ -7,7 +7,8 @@ by Xudong Wang, Long Lian, Zhongqi Miao, Ziwei Liu and Stella X. Yu at UC Berkel
 
 <img src="title-img.png" width="100%" />
 
-This repository contains an official implementation of RIDE from the authors, while also has plans to support other works on long-tailed recognition.
+This repository contains an official re-implementation of RIDE from the authors, while also has plans to support other works on long-tailed recognition. Further information please contact [Xudong Wang](xdwang@eecs.berkeley.edu) and [Long Lian](longlian@berkeley.edu).
+
 
 ## Supported Methods for Long-tailed Recognition:
 - [x] RIDE
