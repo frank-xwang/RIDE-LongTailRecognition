@@ -214,7 +214,7 @@ If you find our work inspiring or use our codebase in your research, please cite
 ```
 
 ### License
-This project is licensed under the MIT License. See LICENSE for more details. The parts described below follow their original license.
+This project is licensed under the MIT License. See [LICENSE](https://github.com/frank-xwang/RIDE-LongTailRecognition/blob/main/LICENSE) for more details. The parts described below follow their original license.
 
 ## Acknowledgements
 This is a project based on this [pytorch template](https://github.com/victoresque/pytorch-template). The pytorch template is inspired by the project [Tensorflow-Project-Template](https://github.com/MrGemy95/Tensorflow-Project-Template) by [Mahmoud Gemy](https://github.com/MrGemy95)
