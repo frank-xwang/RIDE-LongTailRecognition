@@ -198,7 +198,7 @@ Please see [the pytorch template that we use](https://github.com/victoresque/pyt
 See [FAQ](FAQ.md).
 
 ## How to get support from us?
-If you have any general questions, feel free to email us at `longlian at berkeley.edu` and `xdwang at eecs.berkeley.edu`. If you have code or implementation-related questions, please feel free to send emails to us or open an issue in this codebase (We recommend that you open an issue in this codebase, because your questions may help others). If the code which you are interested in exploring belongs to the python template (the details are below), please ask questions to the authors by clicking the link to python template below. You can use `git blame` to find the author of the line of code you have questions about.
+If you have any general questions, feel free to email us at `longlian at berkeley.edu` and `xdwang at eecs.berkeley.edu`. If you have code or implementation-related questions, please feel free to send emails to us or open an issue in this codebase (We recommend that you open an issue in this codebase, because your questions may help others). 
 
 ## Pytorch template
 This is a project based on this [pytorch template](https://github.com/victoresque/pytorch-template). The readme of the template explains its functionality, although we try to list most frequently used ones in this readme.
