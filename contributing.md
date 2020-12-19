@@ -18,4 +18,4 @@ Thanks for your help! Please submit a pull request and we are happy to merge to 
 Please submit an issue for public message or contact us directly for coordination and we are happy to help you. See phases above for what we could help you with.
 
 ### I would like to contact the author directly instead of messages the author in public.
-We recommend that you open an issue in this codebase, because your questions may help others. However, if you would like to contact us directly, feel free to send emails to `longlian at berkeley.edu` and `xdwang at eecs.berkeley.edu`. In general, you can also use "git blame" to find the email of the author or Github username of the author. Then send an email to the author to establish connections. 
+We recommend that you open an issue in this codebase, because your questions may help others. However, if you would like to contact us directly, feel free to send emails to `longlian at berkeley.edu` and `xdwang at eecs.berkeley.edu`.
