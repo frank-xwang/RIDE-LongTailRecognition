@@ -3,7 +3,7 @@
 Xudong Wang, Long Lian, Zhongqi Miao, Ziwei Liu, Stella X. Yu from UC Berkeley/ICSI and NTU
 
 [Project Page](http://people.eecs.berkeley.edu/~xdwang/projects/RIDE/) | [PDF](http://people.eecs.berkeley.edu/~xdwang/papers/RIDE.pdf) | 
-[Preprint](https://arxiv.org/abs/2010.01809) | [citation](#citation) | [code](https://github.com/frank-xwang/RIDE-LongTailRecognition.git)
+[Preprint](https://arxiv.org/abs/2010.01809) | [citation](#citation)
 
 <img src="title-img.png" width="100%" />
 
@@ -12,11 +12,13 @@ This repository contains an official implementation of RIDE from the authors, wh
 ## Supported Methods for Long-tailed Recognition:
 - [x] RIDE
 - [x] LDAM
-- [x] cRT
-- [x] tau-normalization
+- [x] Cross Entropy (CE)
+- [x] Focal Loss
+<!-- - [x] cRT
+- [x] tau-normalization -->
 
 ## Updates
-[Initial Commit] We re-implemented RIDE in this repo. LDAM is also implemented (instruction below). We have limited support on cRT and tau-norm in `load_stage1` option and `tau-normalization.py`, please look at the code comments for instructions while we are still working on it.
+[Initial Commit] We re-implemented RIDE in this repo. LDAM is also implemented (instruction below). We have limited support on cRT and tau-norm in `load_stage1` option and `t-normalization.py`, please look at the code comments for instructions while we are still working on it.
 
 ## Table of contents
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=1 orderedList=false} -->
