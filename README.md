@@ -19,7 +19,7 @@ This repository contains an official re-implementation of RIDE from the authors,
 - [x] tau-normalization -->
 
 ## Updates
-[10/2020 Initial Commit] We re-implemented RIDE in this repo. LDAM is also implemented (instruction below). We have limited support on cRT and tau-norm in `load_stage1` option and `t-normalization.py`, please look at the code comments for instructions while we are still working on it.
+[12/2020] Initial Commit. We re-implemented RIDE in this repo. LDAM is also implemented (instruction below). We have limited support on cRT and tau-norm in `load_stage1` option and `t-normalization.py`, please look at the code comments for instructions while we are still working on it.
 
 ## Table of contents
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=1 orderedList=false} -->
