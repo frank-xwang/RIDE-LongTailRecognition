@@ -1,15 +1,21 @@
 # RIDE: Long-tailed Recognition by Routing Diverse Distribution-Aware Experts
 
-Xudong Wang, Long Lian, Zhongqi Miao, Ziwei Liu, Stella X. Yu
+Xudong Wang, Long Lian, Zhongqi Miao, Ziwei Liu, Stella X. Yu from UC Berkeley/ICSI and NTU
 
-[[ arXiv ](https://arxiv.org/abs/2010.01809)] [[ code ](https://github.com/TonyLianLong/RIDE-LT)] [[ citation ](#citation)] 
+[Project Page](http://people.eecs.berkeley.edu/~xdwang/projects/RIDE/) | [PDF](http://people.eecs.berkeley.edu/~xdwang/papers/RIDE.pdf) | 
+[Preprint](https://arxiv.org/abs/2010.01809) | [citation](#citation) | [code](https://github.com/frank-xwang/RIDE-LongTailRecognition.git)
 
 <img src="title-img.png" width="100%" />
 
-This repository contains an re-implementation of RIDE from the authors, while also has plans to support other works on long-tailed recognition.
+This repository contains an official implementation of RIDE from the authors, while also has plans to support other works on long-tailed recognition.
+
+## Supported Methods for Long-tailed Recognition:
+- [x] LDAM
+- [x] cRT
+- [x] tau-normalization
 
 ## Updates
-[Initial Commit] We re-implemented RIDE in this repo. LDAM is also implemented (instruction below). We have limited support on cRT and t-norm in `load_stage1` option and `t-normalization.py`, please look at  the code comments for instructions while we are still working on it.
+[Initial Commit] We re-implemented RIDE in this repo. LDAM is also implemented (instruction below). We have limited support on cRT and tau-norm in `load_stage1` option and `tau-normalization.py`, please look at the code comments for instructions while we are still working on it.
 
 ## Table of contents
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=1 orderedList=false} -->
@@ -20,7 +26,7 @@ This repository contains an re-implementation of RIDE from the authors, while al
   - [Updates](#updates)
   - [Table of contents](#table-of-contents)
   - [Requirements](#requirements)
-  - [How to get datasets](#how-to-get-datasets)
+  - [Dataset Preparation](#dataset-preparation)
   - [How to get pretrained checkpoints](#how-to-get-pretrained-checkpoints)
   - [Training and Evaluation Instructions](#training-and-evaluation-instructions)
   - [FAQ](#faq)
@@ -43,8 +49,8 @@ This repository contains an re-implementation of RIDE from the authors, while al
 ### Hardware requirements
 8 GPUs with >= 11G GPU RAM are recommended. Otherwise the model with more experts may not fit in, especially on datasets with more classes (the FC layers will be large). We do not support CPU training, but CPU inference could be supported by slight modification.
 
-## How to get datasets
-CIFAR code will download data automatically with the dataloader. We use data the same way as [classifier-balancing](https://github.com/facebookresearch/classifier-balancing). For ImageNet-LT and iNaturalist, please prepare data in the `data` directory. ImageNet-LT data should be the 2014 version. ImageNet-LT can be found at [this link](https://drive.google.com/drive/u/1/folders/1j7Nkfe6ZhzKFXePHdsseeeGI877Xu1yf). iNaturalist data should be the 2018 version from [this](https://github.com/visipedia/inat_comp) repo (Note that it requires you to pay to download now). The annotation can be found at [here](https://github.com/facebookresearch/classifier-balancing/tree/master/data). Please put them in the same location as below:
+## Dataset Preparation
+CIFAR code will download data automatically with the dataloader. We use data the same way as [classifier-balancing](https://github.com/facebookresearch/classifier-balancing). For ImageNet-LT and iNaturalist, please prepare data in the `data` directory. ImageNet-LT can be found at [this link](https://drive.google.com/drive/u/1/folders/1j7Nkfe6ZhzKFXePHdsseeeGI877Xu1yf). iNaturalist data should be the 2018 version from [this](https://github.com/visipedia/inat_comp) repo (Note that it requires you to pay to download now). The annotation can be found at [here](https://github.com/facebookresearch/classifier-balancing/tree/master/data). Please put them in the same location as below:
 
 ```
 data
@@ -188,7 +194,7 @@ Please see [the pytorch template that we use](https://github.com/victoresque/pyt
 See [FAQ](FAQ.md).
 
 ## How to get support from us?
-If you have any general questions, feel free to email us at `xwang at icsi.berkeley.edu` and `longlian at berkeley.edu`. **If you have code or implementation-related questions, please use `git blame` to find the author of the line of code you have questions about** and then send an email to author. **If the code which you are interested in exploring belongs to the python template (the details are below), please ask questions to the authors by clicking the link to python template below.**
+If you have any general questions, feel free to email us at `longlian at berkeley.edu` and `xwang at eecs.berkeley.edu`. If you have code or implementation-related questions, please feel free to send emails to us or open an issue in this codebase (We recommend that you open an issue in this codebase, because your questions may help others). If the code which you are interested in exploring belongs to the python template (the details are below), please ask questions to the authors by clicking the link to python template below. You can use `git blame` to find the author of the line of code you have questions about.
 
 ## Pytorch template
 This is a project based on this [pytorch template](https://github.com/victoresque/pytorch-template). The readme of the template explains its functionality, although we try to list most frequently used ones in this readme.
