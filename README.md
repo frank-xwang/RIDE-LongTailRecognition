@@ -26,6 +26,7 @@ This repository contains an official implementation of RIDE from the authors, wh
 <!-- code_chunk_output -->
 
 - [RIDE: Long-tailed Recognition by Routing Diverse Distribution-Aware Experts](#ride-long-tailed-recognition-by-routing-diverse-distribution-aware-experts)
+  - [Supported Methods for Long-tailed Recognition:](#supported-methods-for-long-tailed-recognition)
   - [Updates](#updates)
   - [Table of contents](#table-of-contents)
   - [Requirements](#requirements)
@@ -82,17 +83,11 @@ We have a [model zoo](MODEL_ZOO.md) available.
 
 ## Training and Evaluation Instructions
 ### Imbalanced CIFAR 100/CIFAR-LT 100
-#### LDAM-DRW
-```
-python train.py -c "configs/config_imbalance_cifar100_ldam_drw.json" --reduce_dimension 1 --num_experts 1
-```
-
-Note: `--reduce_dimension 1` means set reduce dimension to True. The template has an issue with bool arguments so int argument is used here. However, any non-zero value will be equivalent to bool True.
-
 ##### RIDE Without Distill (Stage 1)
 ```
 python train.py -c "configs/config_imbalance_cifar100_ride.json" --reduce_dimension 1 --num_experts 3
 ```
+Note: `--reduce_dimension 1` means set reduce dimension to True. The template has an issue with bool arguments so int argument is used here. However, any non-zero value will be equivalent to bool True.
 
 ##### RIDE With Distill (Stage 1)
 ```
@@ -184,6 +179,11 @@ python train.py -c "configs/config_iNaturalist_resnet50_distill_ride.json" --red
 ```
 python train.py -c "configs/config_iNaturalist_resnet50_ride_ea.json" -r path_to_stage1_checkpoint --reduce_dimension 1 --num_experts 3
 ```
+
+### Using Other Methods with RIDE
+* LDAM: switch the config to the corresponding config
+* Focal Loss: switch the loss to Focal Loss
+* Cross Entropy: switch the loss to Cross Entropy Loss
 
 ### Test
 To test a checkpoint, please put it with the corresponding config file.

@@ -25,4 +25,4 @@ The config will be automatically saved with checkpoint and loaded. If you encoun
 If you set `fp16` in utils, it will enable fp16 training. However, this is susceptible to change (and may not work on all settings or models) and please double check if you are using it since we don't plan to focus on this part if you request help. Only some models work (see `autograd` in the code). We do not plan to provide support on this because it is not within our focus (just for faster training and less memory requirement).
 
 ### How to tune hyper-parameters in this project
-See `train.py` for available options to tune. Set `collaborative_loss` is 1 to enable and 0 to disable.
+See `train.py` for available options to tune.
