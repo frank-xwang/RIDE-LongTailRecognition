@@ -83,7 +83,7 @@ data
 We have a [model zoo](MODEL_ZOO.md) available.
 
 ## Training and Evaluation Instructions
-### Imbalanced CIFAR 100/CIFAR-LT 100
+### Imbalanced CIFAR 100/CIFAR100-LT
 ##### RIDE Without Distill (Stage 1)
 ```
 python train.py -c "configs/config_imbalance_cifar100_ride.json" --reduce_dimension 1 --num_experts 3
