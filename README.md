@@ -10,6 +10,7 @@ Xudong Wang, Long Lian, Zhongqi Miao, Ziwei Liu, Stella X. Yu from UC Berkeley/I
 This repository contains an official implementation of RIDE from the authors, while also has plans to support other works on long-tailed recognition.
 
 ## Supported Methods for Long-tailed Recognition:
+- [x] RIDE
 - [x] LDAM
 - [x] cRT
 - [x] tau-normalization
@@ -194,7 +195,7 @@ Please see [the pytorch template that we use](https://github.com/victoresque/pyt
 See [FAQ](FAQ.md).
 
 ## How to get support from us?
-If you have any general questions, feel free to email us at `longlian at berkeley.edu` and `xwang at eecs.berkeley.edu`. If you have code or implementation-related questions, please feel free to send emails to us or open an issue in this codebase (We recommend that you open an issue in this codebase, because your questions may help others). If the code which you are interested in exploring belongs to the python template (the details are below), please ask questions to the authors by clicking the link to python template below. You can use `git blame` to find the author of the line of code you have questions about.
+If you have any general questions, feel free to email us at `longlian at berkeley.edu` and `xdwang at eecs.berkeley.edu`. If you have code or implementation-related questions, please feel free to send emails to us or open an issue in this codebase (We recommend that you open an issue in this codebase, because your questions may help others). If the code which you are interested in exploring belongs to the python template (the details are below), please ask questions to the authors by clicking the link to python template below. You can use `git blame` to find the author of the line of code you have questions about.
 
 ## Pytorch template
 This is a project based on this [pytorch template](https://github.com/victoresque/pytorch-template). The readme of the template explains its functionality, although we try to list most frequently used ones in this readme.
@@ -202,13 +203,11 @@ This is a project based on this [pytorch template](https://github.com/victoresqu
 ## Citation
 If you find our work inspiring or use our codebase in your research, please cite our work.
 ```
-@misc{wang2020longtailed,
-      title={Long-tailed Recognition by Routing Diverse Distribution-Aware Experts}, 
-      author={Xudong Wang and Long Lian and Zhongqi Miao and Ziwei Liu and Stella X. Yu},
-      year={2020},
-      eprint={2010.01809},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@article{wang2020long,
+  title={Long-tailed Recognition by Routing Diverse Distribution-Aware Experts},
+  author={Wang, Xudong and Lian, Long and Miao, Zhongqi and Liu, Ziwei and Yu, Stella X},
+  journal={arXiv preprint arXiv:2010.01809},
+  year={2020}
 }
 ```
 
