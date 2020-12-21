@@ -3,7 +3,7 @@
 by Xudong Wang, Long Lian, Zhongqi Miao, Ziwei Liu and Stella X. Yu at UC Berkeley/ICSI and NTU
 
 [Project Page](http://people.eecs.berkeley.edu/~xdwang/projects/RIDE/) | [PDF](http://people.eecs.berkeley.edu/~xdwang/papers/RIDE.pdf) | 
-[Preprint](https://arxiv.org/abs/2010.01809) | [citation](#citation)
+[Preprint](https://arxiv.org/abs/2010.01809) | [Citation](#citation)
 
 <img src="title-img.png" width="100%" />
 
