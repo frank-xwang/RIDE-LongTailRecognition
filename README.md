@@ -116,7 +116,7 @@ This part is not finalized and will probably change.
 Please see `t-normalization.py` for usages. It requires a hyperparemeter from the decouple paper.
 -->
 
-### ImageNet_LT
+### ImageNet-LT
 #### RIDE Without Distill (Stage 1)
 ##### ResNet 10
 ```
