@@ -12,8 +12,8 @@ This repository contains an official re-implementation of RIDE from the authors,
 
 ## Supported Methods for Long-tailed Recognition:
 - [x] RIDE
-- [x] LDAM
-- [x] Cross Entropy (CE)
+- [x] LDAM Loss
+- [x] Cross-Entropy (CE) Loss
 - [x] Focal Loss
 <!-- - [x] cRT
 - [x] tau-normalization -->
@@ -182,7 +182,7 @@ python train.py -c "configs/config_iNaturalist_resnet50_ride_ea.json" -r path_to
 ```
 
 ### Using Other Methods with RIDE
-* LDAM: switch the config to the corresponding config
+<!-- * LDAM: switch the config to the corresponding config -->
 * Focal Loss: switch the loss to Focal Loss
 * Cross Entropy: switch the loss to Cross Entropy Loss
 
