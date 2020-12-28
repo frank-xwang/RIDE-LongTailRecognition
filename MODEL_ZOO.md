@@ -5,9 +5,9 @@ Models with 3 experts are standard models that provide a good balance between co
 
 ### Imbalanced CIFAR 100/CIFAR-LT 100
 1. CE and Decouple: baseline results for cross-entropy and decouple (cRT/tau-norm/LWS)
-2. RIDE: ResNet32 backbone, LDAM loss, without distillation, with EA
-3. RIDE + Distill: ResNet32 backbone, LDAM loss, with distillation, with EA
-4. Teacher Model: ResNet32 backbone, LDAM loss, 6 experts, without EA
+2. RIDE: ResNet32 backbone, without distillation, with EA
+3. RIDE + Distill: ResNet32 backbone, with distillation, with EA
+4. Teacher Model: ResNet32 backbone, 6 experts, without EA
 
 <!--
 Directory name:
@@ -28,9 +28,9 @@ Directory name:
 
 ### ImageNet-LT
 1. CE and Decouple: baseline results for cross-entropy and decouple (cRT/tau-norm/LWS)
-2. RIDE: ResNeXt50 backbone, LDAM loss, 3 experts, without distillation, with EA
-2. RIDE + Distill: ResNeXt50 backbone, LDAM loss, with distillation, with EA
-3. Teacher Model: ResNeXt50 backbone, LDAM loss, 6 experts, without EA
+2. RIDE: ResNeXt50 backbone, 3 experts, without distillation, with EA
+2. RIDE + Distill: ResNeXt50 backbone, with distillation, with EA
+3. Teacher Model: ResNeXt50 backbone, 6 experts, without EA
 
 <!--
 Directory name:
@@ -49,9 +49,9 @@ Directory name:
 
 ### iNaturalist
 1. CE and Decouple: baseline results for cross-entropy and Decouple (cRT/tau-norm/LWS)
-2. RIDE: ResNet50 backbone, LDAM loss, without distillation, with EA
-3. RIDE + Distill: ResNet50 backbone, LDAM loss, with distillation, with EA (in FP16)
-4. Teacher Model: ResNet50 backbone, LDAM loss, 6 experts, without EA
+2. RIDE: ResNet50 backbone, without distillation, with EA
+3. RIDE + Distill: ResNet50 backbone, with distillation, with EA (in FP16)
+4. Teacher Model: ResNet50 backbone, 6 experts, without EA
 
 <!--
 Directory name:
