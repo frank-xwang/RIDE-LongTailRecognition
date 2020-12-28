@@ -15,8 +15,8 @@ This repository contains an official re-implementation of RIDE from the authors,
 - [x] Cross-Entropy (CE) Loss
 - [x] Focal Loss
 - [x] LDAM Loss
-- [] cRT (limited support for now)
-- [] tau-normalization (limited support for now)
+- [ ] cRT (limited support for now)
+- [ ] tau-normalization (limited support for now)
 
 ## Updates
 [12/2020] We have limited support on cRT and tau-norm in `load_stage1` option and `t-normalization.py`, please look at the code comments for instructions while we are still working on it.
