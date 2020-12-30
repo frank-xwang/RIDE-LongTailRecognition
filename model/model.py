@@ -60,7 +60,6 @@ class ResNet10Model(Model):
 class ResNet10EAModel(EAModel):
     def __init__(self, num_classes, reduce_dimension=False, layer3_output_dim=None, layer4_output_dim=None, num_experts=1, **kwargs):
         super().__init__(num_classes, None)
-        assert num_experts != 1
         self.backbone = EAResNet.ResNet(EAResNet.BasicBlock, [1, 1, 1, 1], dropout=None, num_classes=num_classes, reduce_dimension=reduce_dimension, layer3_output_dim=layer3_output_dim, layer4_output_dim=layer4_output_dim, num_experts=num_experts, **kwargs)
 
 class ResNet32Model(Model): # From LDAM_DRW
@@ -74,7 +73,6 @@ class ResNet32Model(Model): # From LDAM_DRW
 class ResNet32EAModel(EAModel): # From LDAM_DRW
     def __init__(self, num_classes, reduce_dimension=False, layer2_output_dim=None, layer3_output_dim=None, num_experts=2, **kwargs):
         super().__init__(num_classes, None)
-        assert num_experts != 1
         self.backbone = ea_resnet_cifar.ResNet_s(ea_resnet_cifar.BasicBlock, [5, 5, 5], num_classes=num_classes, reduce_dimension=reduce_dimension, layer2_output_dim=layer2_output_dim, layer3_output_dim=layer3_output_dim, num_experts=num_experts, **kwargs)
 
 class ResNet50Model(Model):

@@ -96,7 +96,7 @@ class BasicBlock(nn.Module):
 
 class ResNet_s(nn.Module):
 
-    def __init__(self, block, num_blocks, num_experts, num_classes=10, reduce_dimension=False, layer2_output_dim=None, layer3_output_dim=None, use_norm=False, use_ensembles=None, s=30):
+    def __init__(self, block, num_blocks, num_experts, num_classes=10, reduce_dimension=False, layer2_output_dim=None, layer3_output_dim=None, use_norm=False, use_experts=None, s=30):
         super(ResNet_s, self).__init__()
         
         self.in_planes = 16
@@ -130,12 +130,12 @@ class ResNet_s(nn.Module):
             self.linears = nn.ModuleList([nn.Linear(layer3_output_dim, num_classes) for _ in range(num_experts)])
             s = 1
 
-        if use_ensembles is None:
-            self.use_ensembles = list(range(num_experts))
-        elif use_ensembles == "rand":
-            self.use_ensembles = None
+        if use_experts is None:
+            self.use_experts = list(range(num_experts))
+        elif use_experts == "rand":
+            self.use_experts = None
         else:
-            self.use_ensembles = [int(item) for item in use_ensembles.split(",")]
+            self.use_experts = [int(item) for item in use_experts.split(",")]
 
         self.s = s
 
@@ -184,12 +184,12 @@ class ResNet_s(nn.Module):
         self.logits = outs
         self.feat_before_GAP = []
         
-        if self.use_ensembles is None:
-            use_ensembles = random.sample(range(self.num_experts), self.num_experts - 1)
+        if self.use_experts is None:
+            use_experts = random.sample(range(self.num_experts), self.num_experts - 1)
         else:
-            use_ensembles = self.use_ensembles
+            use_experts = self.use_experts
         
-        for ind in use_ensembles:
+        for ind in use_experts:
             outs.append(self._separate_part(out, ind))
         self.feat = torch.stack(self.feat, dim=1)
         self.feat_before_GAP = torch.stack(self.feat_before_GAP, dim=1)

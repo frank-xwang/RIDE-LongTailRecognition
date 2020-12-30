@@ -9,7 +9,7 @@ import model.model as module_arch
 from parse_config import ConfigParser
 from trainer import Trainer
 
-# For ensemble with same settings, we don't want this to set to True.
+# For num_experts with same settings, we don't want this to set to True.
 # This is strongly discouraged because it's misleading: setting it to true does not make it reproducible acorss machine/pytorch version. In addition, it also makes training slower. Use with caution.
 deterministic = False
 if deterministic:

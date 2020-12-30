@@ -105,7 +105,7 @@ class Bottleneck(nn.Module):
 
 class ResNet(nn.Module):
 
-    def __init__(self, block, layers, num_experts, dropout=None, num_classes=1000, use_norm=False, reduce_dimension=False, layer3_output_dim=None, layer4_output_dim=None, share_layer3=False, top_choices_num=5, pos_weight=20, share_ensemble_help_pred_fc=True, force_all=False, s=30):
+    def __init__(self, block, layers, num_experts, dropout=None, num_classes=1000, use_norm=False, reduce_dimension=False, layer3_output_dim=None, layer4_output_dim=None, share_layer3=False, top_choices_num=5, pos_weight=20, share_expert_help_pred_fc=True, force_all=False, s=30):
         self.inplanes = 64
         self.num_experts = num_experts
         super(ResNet, self).__init__()
@@ -166,15 +166,15 @@ class ResNet(nn.Module):
 
         self.top_choices_num = top_choices_num
         
-        self.share_ensemble_help_pred_fc = share_ensemble_help_pred_fc
+        self.share_expert_help_pred_fc = share_expert_help_pred_fc
         self.layer4_feat = True
 
-        ensemble_hidden_fc_output_dim = 16
-        self.ensemble_help_pred_hidden_fcs = nn.ModuleList([nn.Linear((layer4_output_dim if self.layer4_feat else layer3_output_dim) * block.expansion, ensemble_hidden_fc_output_dim) for _ in range(self.num_experts - 1)])
-        if self.share_ensemble_help_pred_fc:
-            self.ensemble_help_pred_fc = nn.Linear(ensemble_hidden_fc_output_dim + self.top_choices_num, 1)
+        expert_hidden_fc_output_dim = 16
+        self.expert_help_pred_hidden_fcs = nn.ModuleList([nn.Linear((layer4_output_dim if self.layer4_feat else layer3_output_dim) * block.expansion, expert_hidden_fc_output_dim) for _ in range(self.num_experts - 1)])
+        if self.share_expert_help_pred_fc:
+            self.expert_help_pred_fc = nn.Linear(expert_hidden_fc_output_dim + self.top_choices_num, 1)
         else:
-            self.ensemble_help_pred_fcs = nn.ModuleList([nn.Linear(ensemble_hidden_fc_output_dim + self.top_choices_num, 1) for _ in range(self.num_experts - 1)])
+            self.expert_help_pred_fcs = nn.ModuleList([nn.Linear(expert_hidden_fc_output_dim + self.top_choices_num, 1) for _ in range(self.num_experts - 1)])
 
         self.pos_weight = pos_weight
 
@@ -184,7 +184,7 @@ class ResNet(nn.Module):
 
         if not force_all:
             for name, param in self.named_parameters():
-                if "ensemble_help_pred" in name:
+                if "expert_help_pred" in name:
                     param.requires_grad_(True)
                 else:
                     param.requires_grad_(False)
@@ -238,20 +238,20 @@ class ResNet(nn.Module):
         x = x * self.s # This hyperparam s is originally in the loss function, but we moved it here to prevent using s multiple times in distillation.
         return x
 
-    def pred_ensemble_help(self, input_part, i):
+    def pred_expert_help(self, input_part, i):
         feature, logits = input_part
         feature = F.adaptive_avg_pool2d(feature, (1, 1)).flatten(1)
         feature = feature / feature.norm(dim=1, keepdim=True)
 
-        feature = self.relu((self.ensemble_help_pred_hidden_fcs[i])(feature))
+        feature = self.relu((self.expert_help_pred_hidden_fcs[i])(feature))
 
         topk, _ = torch.topk(logits, k=self.top_choices_num, dim=1)
         confidence_input = torch.cat((topk, feature), dim=1)
-        if self.share_ensemble_help_pred_fc:
-            ensemble_help_pred = self.ensemble_help_pred_fc(confidence_input)
+        if self.share_expert_help_pred_fc:
+            expert_help_pred = self.expert_help_pred_fc(confidence_input)
         else:
-            ensemble_help_pred = (self.ensemble_help_pred_fcs[i])(confidence_input)
-        return ensemble_help_pred
+            expert_help_pred = (self.expert_help_pred_fcs[i])(confidence_input)
+        return expert_help_pred
 
     def forward(self, x, target=None):
         x = self.conv1(x)
@@ -267,8 +267,8 @@ class ResNet(nn.Module):
         if target is not None: # training time
             output = shared_part.new_zeros((shared_part.size(0), self.num_classes))
 
-            ensemble_help_preds = output.new_zeros((output.size(0), self.num_experts - 1), dtype=torch.float) 
-            # first column: correctness of the first model, second: correctness of ensemble of the first and second, etc.
+            expert_help_preds = output.new_zeros((output.size(0), self.num_experts - 1), dtype=torch.float) 
+            # first column: correctness of the first model, second: correctness of expert of the first and second, etc.
             correctness = output.new_zeros((output.size(0), self.num_experts), dtype=torch.uint8)
 
             loss = output.new_zeros((1,))
@@ -276,39 +276,34 @@ class ResNet(nn.Module):
                 output += self._separate_part(shared_part, i)
                 correctness[:, i] = output.argmax(dim=1) == target # Or: just helpful, predict 1
                 if i != self.num_experts - 1:
-                    ensemble_help_preds[:, i] = self.pred_ensemble_help((self.feat, output / (i+1)), i).view((-1,))
+                    expert_help_preds[:, i] = self.pred_expert_help((self.feat, output / (i+1)), i).view((-1,))
 
             for i in range(self.num_experts - 1):
                 # import ipdb; ipdb.set_trace()
-                ensemble_help_target = (~correctness[:, i]) & correctness[:, i+1:].any(dim=1)
-                ensemble_help_pred = ensemble_help_preds[:, i]
+                expert_help_target = (~correctness[:, i]) & correctness[:, i+1:].any(dim=1)
+                expert_help_pred = expert_help_preds[:, i]
                 
-                print("Helps ({}):".format(i+1), ensemble_help_target.sum().item() / ensemble_help_target.size(0))
-                print("Prediction ({}):".format(i+1), (torch.sigmoid(ensemble_help_pred) > 0.5).sum().item() / ensemble_help_target.size(0), (torch.sigmoid(ensemble_help_pred) > 0.3).sum().item() / ensemble_help_target.size(0))
+                print("Helps ({}):".format(i+1), expert_help_target.sum().item() / expert_help_target.size(0))
+                print("Prediction ({}):".format(i+1), (torch.sigmoid(expert_help_pred) > 0.5).sum().item() / expert_help_target.size(0), (torch.sigmoid(expert_help_pred) > 0.3).sum().item() / expert_help_target.size(0))
                 
-                loss += F.binary_cross_entropy_with_logits(ensemble_help_pred, ensemble_help_target.float(), pos_weight=ensemble_help_pred.new_tensor([self.pos_weight]))
+                loss += F.binary_cross_entropy_with_logits(expert_help_pred, expert_help_target.float(), pos_weight=expert_help_pred.new_tensor([self.pos_weight]))
             
-            # output with all ensembles
+            # output with all experts
             return output / self.num_experts, loss / (self.num_experts - 1)
         else: # test time
-            ensemble_next = shared_part.new_ones((shared_part.size(0),), dtype=torch.uint8)
+            expert_next = shared_part.new_ones((shared_part.size(0),), dtype=torch.uint8)
             num_experts_for_each_sample = shared_part.new_ones((shared_part.size(0), 1), dtype=torch.long)
             output = self._separate_part(shared_part, 0)
             for i in range(1, self.num_experts):
-                ensemble_help_pred = self.pred_ensemble_help((self.feat, output[ensemble_next] / i), i-1).view((-1,))
+                expert_help_pred = self.pred_expert_help((self.feat, output[expert_next] / i), i-1).view((-1,))
                 if not self.force_all: # For evaluating FLOPs
-                    ensemble_next[ensemble_next.clone()] = (torch.sigmoid(ensemble_help_pred) > 0.5).type(torch.uint8)
-                else:
-                    """if i == 1:
-                        ensemble_next[ensemble_next.clone()] = torch.zeros(ensemble_next[ensemble_next.clone()].shape).uniform_(0, 1) > 0.3513
-                    else:
-                        print("Undefined pass ratio")"""
-                print("Ensemble ({}):".format(i), ensemble_next.sum().item() / ensemble_next.size(0))
+                    expert_next[expert_next.clone()] = (torch.sigmoid(expert_help_pred) > 0.5).type(torch.uint8)
+                print("expert ({}):".format(i), expert_next.sum().item() / expert_next.size(0))
                 
-                if not ensemble_next.any():
+                if not expert_next.any():
                     break
-                output[ensemble_next] += self._separate_part(shared_part[ensemble_next], i)
-                num_experts_for_each_sample[ensemble_next] += 1
+                output[expert_next] += self._separate_part(shared_part[expert_next], i)
+                num_experts_for_each_sample[expert_next] += 1
             
             return output / num_experts_for_each_sample.float(), num_experts_for_each_sample
 

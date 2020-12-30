@@ -123,7 +123,7 @@ class LDAMLoss(nn.Module):
 
 class RIDELoss(nn.Module):
     def __init__(self, cls_num_list=None, base_diversity_temperature=1.0, max_m=0.5, s=30, reweight=True, reweight_epoch=-1, 
-        base_loss_factor=1.0, additional_diversity_factor=0.2, reweight_factor=0.05, collaborative_loss=False):
+        base_loss_factor=1.0, additional_diversity_factor=-0.2, reweight_factor=0.05):
         super().__init__()
         self.base_loss = F.cross_entropy
         self.base_loss_factor = base_loss_factor
@@ -131,9 +131,6 @@ class RIDELoss(nn.Module):
             self.reweight_epoch = -1
         else:
             self.reweight_epoch = reweight_epoch
-        self.collaborative_loss = collaborative_loss
-
-        print("Collaborative loss: ", collaborative_loss)
 
         # LDAM is a variant of cross entropy and we handle it with self.m_list.
         if cls_num_list is None:
@@ -224,7 +221,7 @@ class RIDELoss(nn.Module):
 
         # Adding RIDE Individual Loss for each expert
         for logits_item in extra_info['logits']:
-            ride_loss_logits = output_logits if self.collaborative_loss else logits_item
+            ride_loss_logits = output_logits if self.additional_diversity_factor == 0 else logits_item
             if self.m_list is None:
                 loss += self.base_loss_factor * self.base_loss(ride_loss_logits, target)
             else:

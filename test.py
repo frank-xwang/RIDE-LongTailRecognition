@@ -51,13 +51,13 @@ def main(config):
     confusion_matrix = torch.zeros(num_classes, num_classes).cuda()
 
     if hasattr(model, "confidence_model") and model.confidence_model:
-        cumulative_sample_num_ensemble = torch.zeros((model.backbone.num_experts, ), dtype=torch.float, device=device)
-        cumulative_sample_num_ensemble_each_shot = [torch.zeros((model.backbone.num_experts, ), dtype=torch.float, device=device) for _ in range(3)]
+        cumulative_sample_num_experts = torch.zeros((model.backbone.num_experts, ), dtype=torch.float, device=device)
+        cumulative_sample_num_experts_each_shot = [torch.zeros((model.backbone.num_experts, ), dtype=torch.float, device=device) for _ in range(3)]
         num_samples = 0
         confidence_model = True
     else:
-        cumulative_sample_num_ensemble = None
-        cumulative_sample_num_ensemble_each_shot = None
+        cumulative_sample_num_experts = None
+        cumulative_sample_num_experts_each_shot = None
         confidence_model = False
 
     get_class_acc = True
@@ -78,9 +78,9 @@ def main(config):
             data, target = data.to(device), target.to(device)
 
             if confidence_model:
-                output, sample_num_ensemble = model(data)
-                num, count = torch.unique(sample_num_ensemble, return_counts=True)
-                cumulative_sample_num_ensemble[num - 1] += count.type(torch.float)
+                output, sample_num_experts = model(data)
+                num, count = torch.unique(sample_num_experts, return_counts=True)
+                cumulative_sample_num_experts[num - 1] += count.type(torch.float)
                 num_samples += data.size(0)
 
                 many_shot_tensor = torch.tensor(many_shot, device=device)
@@ -88,8 +88,8 @@ def main(config):
                 few_shot_tensor = torch.tensor(few_shot, device=device)
 
                 for i, mask_shot in enumerate([many_shot_tensor, medium_shot_tensor, few_shot_tensor]):
-                    num, count = torch.unique(sample_num_ensemble[mask_shot[target]], return_counts=True)
-                    (cumulative_sample_num_ensemble_each_shot[i])[num - 1] += count.float()
+                    num, count = torch.unique(sample_num_experts[mask_shot[target]], return_counts=True)
+                    (cumulative_sample_num_experts_each_shot[i])[num - 1] += count.float()
             else:
                 output = model(data)
 
@@ -108,10 +108,10 @@ def main(config):
             for t, p in zip(target.view(-1), output.argmax(dim=1).view(-1)):
                 confusion_matrix[t.long(), p.long()] += 1
     if confidence_model:
-        print("Samples with ensemble:", *[('%.2f'%item) for item in (cumulative_sample_num_ensemble * 100 / num_samples).tolist()])
-        print({"many_hp_num": (cumulative_sample_num_ensemble_each_shot[0]/cumulative_sample_num_ensemble_each_shot[0].sum()).cpu().tolist(),
-            "medium_hp_num": (cumulative_sample_num_ensemble_each_shot[1]/cumulative_sample_num_ensemble_each_shot[1].sum()).cpu().tolist(),
-            "few_hp_num": (cumulative_sample_num_ensemble_each_shot[2]/cumulative_sample_num_ensemble_each_shot[2].sum()).cpu().tolist()})
+        print("Samples with num_experts:", *[('%.2f'%item) for item in (cumulative_sample_num_experts * 100 / num_samples).tolist()])
+        print({"many_hp_num": (cumulative_sample_num_experts_each_shot[0]/cumulative_sample_num_experts_each_shot[0].sum()).cpu().tolist(),
+            "medium_hp_num": (cumulative_sample_num_experts_each_shot[1]/cumulative_sample_num_experts_each_shot[1].sum()).cpu().tolist(),
+            "few_hp_num": (cumulative_sample_num_experts_each_shot[2]/cumulative_sample_num_experts_each_shot[2].sum()).cpu().tolist()})
 
     acc_per_class = confusion_matrix.diag()/confusion_matrix.sum(1)
     

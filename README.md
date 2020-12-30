@@ -19,6 +19,8 @@ This repository contains an official re-implementation of RIDE from the authors,
 - [ ] Decouple: tau-normalization (limited support for now)
 
 ## Updates
+[12/2020] We added an approximate GFLops counter. See usages below. We also refactored the code and fixed a few errors.  
+
 [12/2020] We have limited support on cRT and tau-norm in `load_stage1` option and `t-normalization.py`, please look at the code comments for instructions while we are still working on it.
 
 [12/2020] Initial Commit. We re-implemented RIDE in this repo. LDAM/Focal/Cross-Entropy loss is also re-implemented (instruction below).
@@ -195,6 +197,45 @@ python test.py -r path_to_checkpoint
 ```
 
 Please see [the pytorch template that we use](https://github.com/victoresque/pytorch-template) for additional more general usages of this project (e.g. loading from a checkpoint, etc.).
+
+### GFLops calculation
+We provide an experimental support for approximate GFLops calculation. Please open an issue if you encounter any problem or meet inconsistency in GFLops.
+
+You need to install `thop` package first. Then, according to your model, run `python -m utils.gflops (args)` in the project directory.
+
+#### Examples and explanations
+Use `python -m utils.gflops` to see the documents as well as explanations for this calculator.
+
+##### ImageNet-LT
+```
+python -m utils.gflops ResNeXt50Model 0 --num_experts 3 --reduce_dim True --use_norm False
+```
+To change model, switch `ResNeXt50Model` to the ones used in your config. `use_norm` comes with LDAM-based methods (including RIDE). `reduce_dim` is used in default RIDE models. The `0` in the command line indicates the dataset.
+
+All supported datasets:
+
+* 0: ImageNet-LT
+* 1: iNaturalist
+* 2: Imbalance CIFAR 100
+
+##### iNaturalist
+```
+python -m utils.gflops ResNet50Model 1 --num_experts 3 --reduce_dim True --use_norm True
+```
+
+##### Imbalance CIFAR 100
+```
+python -m utils.gflops ResNet32Model 2 --num_experts 3 --reduce_dim True --use_norm True
+```
+
+##### Special circumstances: calculate the approximate GFLops in models with expert assignment module
+We provide a `ea_percentage` for specifying the percentage of data that pass each expert. Note that you need to switch to the `EA` model as well since you actually use `EA` model instead of the original model in training and inference.
+
+An example:
+
+```
+python -m utils.gflops ResNet32EAModel 2 --num_experts 3 --reduce_dim True --use_norm True --ea_percentage 40.99,9.47,49.54
+```
 
 ## FAQ
 See [FAQ](FAQ.md).

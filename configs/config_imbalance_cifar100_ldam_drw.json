@@ -13,7 +13,7 @@
     },
     "data_loader": {
         "type": "ImbalanceCIFAR100DataLoader",
-        "args":{
+        "args": {
             "data_dir": "data",
             "batch_size": 128,
             "shuffle": true,
@@ -22,11 +22,10 @@
     },
     "optimizer": {
         "type": "SGD",
-        "args":{
+        "args": {
             "lr": 0.1,
-            "weight_decay": 5e-4,
-            "momentum": 0.9,
-            "nesterov": true
+            "weight_decay": 2e-4,
+            "momentum": 0.9
         }
     },
     "loss": {

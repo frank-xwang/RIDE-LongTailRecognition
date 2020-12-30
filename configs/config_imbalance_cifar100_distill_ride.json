@@ -44,7 +44,7 @@
     "loss": {
         "type": "RIDELossWithDistill",
         "args": {
-            "additional_diversity_factor": 0.2,
+            "additional_diversity_factor": -0.2,
             "distill_temperature": 1.5,
             "reweight": true,
             "reweight_epoch": 160

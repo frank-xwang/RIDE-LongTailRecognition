@@ -186,7 +186,7 @@ class Trainer(BaseTrainer):
         self.valid_metrics.reset()
         with torch.no_grad():
             if hasattr(self.model, "confidence_model") and self.model.confidence_model:
-                cumulative_sample_num_ensemble = torch.zeros((self.model.backbone.num_experts, ), device=self.device)
+                cumulative_sample_num_experts = torch.zeros((self.model.backbone.num_experts, ), device=self.device)
                 num_samples = 0
                 confidence_model = True
             else:
@@ -195,9 +195,9 @@ class Trainer(BaseTrainer):
                 data, target = data.to(self.device), target.to(self.device)
 
                 if confidence_model:
-                    output, sample_num_ensemble = self.model(data)
-                    num, count = torch.unique(sample_num_ensemble, return_counts=True)
-                    cumulative_sample_num_ensemble[num - 1] += count
+                    output, sample_num_experts = self.model(data)
+                    num, count = torch.unique(sample_num_experts, return_counts=True)
+                    cumulative_sample_num_experts[num - 1] += count
                     num_samples += data.size(0)
                 else:
                     output = self.model(data)
@@ -212,7 +212,7 @@ class Trainer(BaseTrainer):
                 self.writer.add_image('input', make_grid(data.cpu(), nrow=8, normalize=True))
 
             if confidence_model:
-                print("Samples with ensemble:", *[('%.2f'%item) for item in (cumulative_sample_num_ensemble * 100 / num_samples).tolist()])
+                print("Samples with num_experts:", *[('%.2f'%item) for item in (cumulative_sample_num_experts * 100 / num_samples).tolist()])
 
         # add histogram of model parameters to the tensorboard
         for name, p in self.model.named_parameters():
