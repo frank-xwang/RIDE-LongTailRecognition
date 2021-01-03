@@ -33,7 +33,7 @@
     "loss": {
         "type": "RIDELoss",
         "args": {
-            "additional_diversity_factor": -0.2,
+            "additional_diversity_factor": -0.45,
             "reweight": true,
             "reweight_epoch": 160
         }
