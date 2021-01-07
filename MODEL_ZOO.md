@@ -1,13 +1,13 @@
 ## Model Zoo
 If you only want to use our trained checkpoints for inference or fine-tuning, here is the collection of models.
 
-Models with 3 experts are standard models that provide a good balance between computation/model size and accuracy and should be used to compare with other models fairly. Note that models with 2 experts sometimes have even lower computational cost than baseline models. However, we will also release some models that achieve higher accuracy such as models with 6 experts, which can be used as teacher models to distill other models. Some models are trained in an old config format so that config may mismatch. If you cannot load the checkpoint, please tell us.
+Models with 3 experts are standard models that provide a good trade-off between computation/model size and accuracy and should be used to compare with other models fairly. Note that models with 2 experts sometimes have even lower computational cost than baseline models. However, we will also release some models that achieve higher accuracy such as models with 6 experts, which can be used as teacher models to distill other models. Some models are trained in an old config format so that config may mismatch. If you cannot load the checkpoint, please let us know.
 
 ### Imbalanced CIFAR 100/CIFAR-LT 100
 1. CE and Decouple: baseline results for cross-entropy and decouple (cRT/tau-norm/LWS)
 2. RIDE: ResNet32 backbone, without distillation, with EA
 3. RIDE + Distill: ResNet32 backbone, with distillation, with EA
-4. Teacher Model: ResNet32 backbone, 6 experts, without EA
+4. Teacher Model: ResNet32 backbone, 6 experts, without EA. Working as the teacher model when optimizing RIDE with knowledge distillation.
 
 <!--
 Directory name:
@@ -30,7 +30,7 @@ Directory name:
 1. CE and Decouple: baseline results for cross-entropy and decouple (cRT/tau-norm/LWS)
 2. RIDE: ResNeXt50 backbone, 3 experts, without distillation, with EA
 2. RIDE + Distill: ResNeXt50 backbone, with distillation, with EA
-3. Teacher Model: ResNeXt50 backbone, 6 experts, without EA
+3. Teacher Model: ResNeXt50 backbone, 6 experts, without EA. Working as the teacher model when optimizing RIDE with knowledge distillation.
 
 <!--
 Directory name:
@@ -51,7 +51,7 @@ Directory name:
 1. CE and Decouple: baseline results for cross-entropy and Decouple (cRT/tau-norm/LWS)
 2. RIDE: ResNet50 backbone, without distillation, with EA
 3. RIDE + Distill: ResNet50 backbone, with distillation, with EA (in FP16)
-4. Teacher Model: ResNet50 backbone, 6 experts, without EA
+4. Teacher Model: ResNet50 backbone, 6 experts, without EA. Working as the teacher model when optimizing RIDE with knowledge distillation.
 
 <!--
 Directory name:
@@ -69,4 +69,4 @@ Directory name:
 | *Teacher Model*    | 6 | 72.8              | 71.0          | 72.9            | 73.3        | Link
 
 
-After downloading the checkpoints, you could run evaluation by following the instructions in the test section below.
+After downloading the checkpoints, you could run evaluation by following the instructions in the test section.
