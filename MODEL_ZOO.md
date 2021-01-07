@@ -1,7 +1,7 @@
 ## Model Zoo
 If you only want to use our trained checkpoints for inference or fine-tuning, here is the collection of models.
 
-Models with 3 experts are standard models that provide a good trade-off between computation/model size and accuracy and should be used to compare with other models fairly. Note that models with 2 experts sometimes have even lower computational cost than baseline models. However, we will also release some models that achieve higher accuracy such as models with 6 experts, which can be used as teacher models to distill other models. Some models are trained in an old config format so that config may mismatch. If you cannot load the checkpoint, please let us know.
+Models with 3 experts are standard models that provide a good trade-off between computation/model size and accuracy. Note that models with 2 experts sometimes have even lower computational cost than baseline models. However, we will also release some models that achieve higher accuracy such as models with 6 experts, which can be used as teacher models to distill other models. Some models are trained in an old config format so that config may mismatch. If you cannot load the checkpoint, please let us know.
 
 ### Imbalanced CIFAR 100/CIFAR-LT 100
 1. CE and Decouple: baseline results for cross-entropy and decouple (cRT/tau-norm/LWS)
