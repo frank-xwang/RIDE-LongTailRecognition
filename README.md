@@ -1,4 +1,4 @@
-# RIDE: Long-tailed Recognition by Routing Diverse Distribution-Aware Experts
+# RIDE: Long-tailed Recognition by Routing Diverse Distribution-Aware Experts. (ICLR 2021 Spotlight)
 
 by Xudong Wang, Long Lian, Zhongqi Miao, Ziwei Liu and Stella X. Yu at UC Berkeley/ICSI and NTU
 
