@@ -52,6 +52,9 @@ class CIFAR100DataLoader(DataLoader):
         super().__init__(dataset=self.dataset, **self.init_kwargs)
         
     def split_validation(self):
+        # If you do not want to validate:
+        # return None
+        # If you want to validate:
         return DataLoader(dataset=self.val_dataset, **self.init_kwargs)
 
 class BalancedSampler(Sampler):
@@ -147,6 +150,9 @@ class ImbalanceCIFAR100DataLoader(DataLoader):
         super().__init__(dataset=self.dataset, **self.init_kwargs, sampler=sampler) # Note that sampler does not apply to validation set
 
     def split_validation(self):
+        # If you do not want to validate:
+        # return None
+        # If you want to validate:
         return DataLoader(dataset=self.val_dataset, **self.init_kwargs)
 
 class ImbalanceCIFAR10DataLoader(DataLoader):
@@ -209,67 +215,7 @@ class ImbalanceCIFAR10DataLoader(DataLoader):
         super().__init__(dataset=self.dataset, **self.init_kwargs, sampler=sampler) # Note that sampler does not apply to validation set
 
     def split_validation(self):
-        return DataLoader(dataset=self.val_dataset, **self.init_kwargs)
-
-    """
-    Imbalance Cifar100 CRD Data Loader
-    """
-    def __init__(self, data_dir, batch_size, shuffle=True, num_workers=1, training=True, balanced=False, retain_epoch_size=True, k=4096, mode='exact', is_sample=True, percent=1.0):
-        normalize = transforms.Normalize(mean=[0.4914, 0.4822, 0.4465],
-            std=[0.2023, 0.1994, 0.2010])
-        train_trsfm = transforms.Compose([
-            transforms.RandomCrop(32, padding=4),
-            transforms.RandomHorizontalFlip(),
-            transforms.RandomRotation(15),
-            transforms.ToTensor(),
-            normalize,
-        ])
-        test_trsfm = transforms.Compose([
-            transforms.ToTensor(),
-            normalize,
-        ])
-        test_dataset = datasets.CIFAR100(data_dir, train=False, download=True, transform=test_trsfm) # test set
-        
-        if training:
-            dataset = IMBALANCECIFAR100(data_dir, train=True, download=True, transform=train_trsfm)
-            dataset = InstanceSample(dataset, num_classes=100, k=k, mode=mode, is_sample=is_sample, percent=percent)
-            val_dataset = test_dataset
-        else:
-            dataset = test_dataset
-            val_dataset = None
-
-        self.dataset = dataset
-        self.val_dataset = val_dataset
-
-        num_classes = len(np.unique(dataset.targets))
-        assert num_classes == 100
-
-        cls_num_list = [0] * num_classes
-        for label in dataset.targets:
-            cls_num_list[label] += 1
-
-        self.cls_num_list = cls_num_list
-
-        if balanced:
-            if training:
-                buckets = [[] for _ in range(num_classes)]
-                for idx, label in enumerate(dataset.targets):
-                    buckets[label].append(idx)
-                sampler = BalancedSampler(buckets, retain_epoch_size)
-                shuffle = False
-            else:
-                print("Test set will not be evaluated with balanced sampler, nothing is done to make it balanced")
-        else:
-            sampler = None
-        
-        self.shuffle = shuffle
-        self.init_kwargs = {
-            'batch_size': batch_size,
-            'shuffle': self.shuffle,
-            'num_workers': num_workers
-        }
-
-        super().__init__(dataset=self.dataset, **self.init_kwargs, sampler=sampler) # Note that sampler does not apply to validation set
-
-    def split_validation(self):
+        # If you do not want to validate:
+        # return None
+        # If you want to validate:
         return DataLoader(dataset=self.val_dataset, **self.init_kwargs)
