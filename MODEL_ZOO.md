@@ -21,10 +21,10 @@ Directory name:
 | -------------- | ---------------- | ---------------- | ------------- | --------------- | ------------ | -------- |
 | CE                 | - | 39.1         | 66.1         | 37.3           | 10.6        | -
 | Decouple           | - | 43.3         | 64.0         | 44.8           | 18.1        | -
-| **RIDE**           | 3 | 48.6         | 67.0         | 49.9           | 25.7        | Link
-| **RIDE + Distill** | 3 | 49.0         | 67.6         | 50.9           | 25.2        | Link
-| **RIDE + Distill** | 4 | 49.4         | 67.7         | 51.3           | 25.7        | Link
-| *Teacher Model*    | 6 | 50.2         | 69.3         | 52.1           | 25.8        | Link
+| **RIDE**           | 3 | 48.6         | 67.0         | 49.9           | 25.7        | [Link](https://drive.google.com/file/d/1uE8I_2JcslWGPu4O0nAFEIk7iR_Sw5lS/view?usp=sharing)
+| **RIDE + Distill** | 3 | 49.0         | 67.6         | 50.9           | 25.2        | [Link](https://drive.google.com/file/d/1W-EICEpAavKzlnayiFPvb5cDyGCBl34l/view?usp=sharing)
+| **RIDE + Distill** | 4 | 49.4         | 67.7         | 51.3           | 25.7        | [Link](https://drive.google.com/file/d/11kyxcYIh3bXk3mn3Y8EENHcsx-Ld9PXH/view?usp=sharing)
+| *Teacher Model*    | 6 | 50.2         | 69.3         | 52.1           | 25.8        | [Link](https://drive.google.com/file/d/1kq8SaoHUujqIOplsKUNRpKM7UQR0qg-k/view?usp=sharing)
 
 ### ImageNet-LT
 1. CE and Decouple: baseline results for cross-entropy and decouple (cRT/tau-norm/LWS)
@@ -43,9 +43,9 @@ Directory name:
 | -------------- | ---------------- | ---------------- | ------------- | --------------- | ------------ | -------- |
 | CE                 | - | 44.4              | 65.9          | 37.5            | 7.7          | -
 | Decouple           | - | 49.9              | 60.2          | 47.2            | 30.3         | -
-| **RIDE**           | 3 |  55.7             | 66.9          | 52.3            | 36.5        | Link
-| **RIDE + Distill** | 4 |  56.8             | 68.3          | 53.5            | 35.9        | Link
-| *Teacher Model*    | 6 |  57.5             | 68.9          | 54.4            | 36.5        | Link
+| **RIDE**           | 3 |  55.7             | 67.0          | 52.2            | 36.0        | [Link](https://drive.google.com/file/d/1d4PHfWZ_rfTRDIJG5sogK1cO0BRoi9d9/view?usp=sharing)
+| **RIDE + Distill** | 4 |  56.8             | 68.3          | 53.5            | 35.9        | [Link](https://drive.google.com/file/d/1G3aT7YzEixb0mSQBpZpuUfTT3b9YsSbz/view?usp=sharing)
+| *Teacher Model*    | 6 |  57.5             | 68.9          | 54.3            | 36.5        | [Link](https://drive.google.com/file/d/1hJyMgbv0JSisXCiHpC1xcHhbGXJP8K8a/view?usp=sharing)
 
 ### iNaturalist
 1. CE and Decouple: baseline results for cross-entropy and Decouple (cRT/tau-norm/LWS)
@@ -64,9 +64,9 @@ Directory name:
 | -------------- | ---------------- | ---------------- | ------------- | --------------- | ------------ | -------- |
 | CE                 | - | 61.7              | 72.2          | 63.0            | 57.2         | -
 | Decouple           | - | 65.9              | 65.0          | 66.3            | 65.5         | -
-| **RIDE**           | 3 | 71.2              | 70.2          | 71.2            | 71.6        | Link
-| **RIDE + Distill** | 4 | 72.6              | 70.9          | 72.4            | 73.1        | Link
-| *Teacher Model*    | 6 | 72.8              | 71.0          | 72.9            | 73.3        | Link
+| **RIDE**           | 3 | 71.2              | 70.2          | 71.2            | 71.6        | [Link](https://drive.google.com/file/d/1KVrKrQXsuzeeb2oFzjloEf2XrvIfb42u/view?usp=sharing)
+| **RIDE + Distill** | 4 | 72.6              | 70.9          | 72.5            | 73.1        | [Link](https://drive.google.com/file/d/1PdfWVQlsTjPFDr7bTFeUUskh2RA6Mb_r/view?usp=sharing)
+| *Teacher Model*    | 6 | 72.9              | 71.1          | 72.9            | 73.3        | [Link](https://drive.google.com/file/d/1DtLlx3be7WCmtVzoGBSGCiImQDJNxHGJ/view?usp=sharing)
 
 
 After downloading the checkpoints, you could run evaluation by following the instructions in the test section.
