@@ -21,6 +21,8 @@ This repository contains an official re-implementation of RIDE from the authors,
 - [ ] Decouple: tau-normalization (limited support for now)
 
 ## Updates
+[4/2021] Pre-trained models are avaliable in model zoo.  
+
 [12/2020] We added an approximate GFLops counter. See usages below. We also refactored the code and fixed a few errors.  
 
 [12/2020] We have limited support on cRT and tau-norm in `load_stage1` option and `t-normalization.py`, please look at the code comments for instructions while we are still working on it.
