@@ -4,7 +4,7 @@ by Xudong Wang, Long Lian, Zhongqi Miao, Ziwei Liu and Stella X. Yu at UC Berkel
 
 <em>International Conference on Learning Representations (ICLR), 2021. **Spotlight Presentation**</em>
 
-[Project Page](http://people.eecs.berkeley.edu/~xdwang/projects/RIDE/) | [PDF](http://people.eecs.berkeley.edu/~xdwang/papers/RIDE.pdf) | 
+[Project Page](http://people.eecs.berkeley.edu/~xdwang/projects/RIDE/) | [PDF](http://people.eecs.berkeley.edu/~xdwang/papers/ICLR2021_RIDE.pdf) | 
 [Preprint](https://arxiv.org/abs/2010.01809) | [OpenReview](https://openreview.net/forum?id=D9I3drBz4UC) | [Citation](#citation)
 
 <img src="title-img.png" width="100%" />
