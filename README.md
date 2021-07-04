@@ -11,14 +11,25 @@ by [Xudong Wang](http://people.eecs.berkeley.edu/~xdwang/), [Long Lian](https://
 
 This repository contains an official re-implementation of RIDE from the authors, while also has plans to support other works on long-tailed recognition. Further information please contact [Xudong Wang](mailto:xdwang@eecs.berkeley.edu) and [Long Lian](mailto:longlian@berkeley.edu).
 
+## Citation
+If you find our work inspiring or use our codebase in your research, please consider giving a star ⭐ and a citation.
+```
+@inproceedings{wang2021longtailed,
+  title={Long-tailed Recognition by Routing Diverse Distribution-Aware Experts},
+  author={Xudong Wang and Long Lian and Zhongqi Miao and Ziwei Liu and Stella Yu},
+  booktitle={International Conference on Learning Representations},
+  year={2021},
+  url={https://openreview.net/forum?id=D9I3drBz4UC}
+}
+```
 
 ## Supported Methods for Long-tailed Recognition:
 - [x] RIDE
 - [x] Cross-Entropy (CE) Loss
 - [x] Focal Loss
 - [x] LDAM Loss
-- [ ] Decouple: cRT (limited support for now)
-- [ ] Decouple: tau-normalization (limited support for now)
+- [x] Decouple: cRT (limited support for now)
+- [x] Decouple: tau-normalization (limited support for now)
 
 ## Updates
 [04/2021] Pre-trained models are avaliable in model zoo.  
@@ -249,18 +260,6 @@ If you have any general questions, feel free to email us at `longlian at berkele
 
 ## Pytorch template
 This is a project based on this [pytorch template](https://github.com/victoresque/pytorch-template). The readme of the template explains its functionality, although we try to list most frequently used ones in this readme.
-
-## Citation
-If you find our work inspiring or use our codebase in your research, please cite our work.
-```
-@inproceedings{wang2021longtailed,
-  title={Long-tailed Recognition by Routing Diverse Distribution-Aware Experts},
-  author={Xudong Wang and Long Lian and Zhongqi Miao and Ziwei Liu and Stella Yu},
-  booktitle={International Conference on Learning Representations},
-  year={2021},
-  url={https://openreview.net/forum?id=D9I3drBz4UC}
-}
-```
 
 ### License
 This project is licensed under the MIT License. See [LICENSE](https://github.com/frank-xwang/RIDE-LongTailRecognition/blob/main/LICENSE) for more details. The parts described below follow their original license.
