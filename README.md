@@ -5,7 +5,7 @@ by [Xudong Wang](http://people.eecs.berkeley.edu/~xdwang/), [Long Lian](https://
 <em>International Conference on Learning Representations (ICLR), 2021. **Spotlight Presentation**</em>
 
 [Project Page](http://people.eecs.berkeley.edu/~xdwang/projects/RIDE/) | [PDF](http://people.eecs.berkeley.edu/~xdwang/papers/ICLR2021_RIDE.pdf) | 
-[Preprint](https://arxiv.org/abs/2010.01809) | [OpenReview](https://openreview.net/forum?id=D9I3drBz4UC) | [Citation](#citation)
+[Preprint](https://arxiv.org/abs/2010.01809) | [OpenReview](https://openreview.net/forum?id=D9I3drBz4UC) | [Slides](http://people.eecs.berkeley.edu/~xdwang/projects/RIDE/ICLR2021-RIDE-10mins-V4.pdf ) | [Citation](#citation)
 
 <img src="title-img.png" width="100%" />
 
