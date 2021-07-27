@@ -26,7 +26,7 @@ Directory name:
 | **RIDE + Distill** | 4 | 49.4         | 67.7         | 51.3           | 25.7        | [Link](https://drive.google.com/file/d/11kyxcYIh3bXk3mn3Y8EENHcsx-Ld9PXH/view?usp=sharing)
 | *Teacher Model*    | 6 | 50.2         | 69.3         | 52.1           | 25.8        | [Link](https://drive.google.com/file/d/1kq8SaoHUujqIOplsKUNRpKM7UQR0qg-k/view?usp=sharing)
 
-### ImageNet-LT
+### ImageNet-LT (100 epochs)
 1. CE and Decouple: baseline results for cross-entropy and decouple (cRT/tau-norm/LWS)
 2. RIDE: ResNeXt50 backbone, 3 experts, without distillation, with EA
 2. RIDE + Distill: ResNeXt50 backbone, with distillation, with EA
@@ -47,7 +47,7 @@ Directory name:
 | **RIDE + Distill** | 4 |  56.8             | 68.3          | 53.5            | 35.9        | [Link](https://drive.google.com/file/d/1G3aT7YzEixb0mSQBpZpuUfTT3b9YsSbz/view?usp=sharing)
 | *Teacher Model*    | 6 |  57.5             | 68.9          | 54.3            | 36.5        | [Link](https://drive.google.com/file/d/1hJyMgbv0JSisXCiHpC1xcHhbGXJP8K8a/view?usp=sharing)
 
-### iNaturalist
+### iNaturalist (100 epochs)
 1. CE and Decouple: baseline results for cross-entropy and Decouple (cRT/tau-norm/LWS)
 2. RIDE: ResNet50 backbone, without distillation, with EA
 3. RIDE + Distill: ResNet50 backbone, with distillation, with EA (in FP16)
