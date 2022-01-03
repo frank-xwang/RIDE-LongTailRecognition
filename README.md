@@ -1,6 +1,6 @@
 # RIDE: Long-tailed Recognition by Routing Diverse Distribution-Aware Experts.
 
-by [Xudong Wang](http://people.eecs.berkeley.edu/~xdwang/), [Long Lian](https://github.com/TonyLianLong/), [Zhongqi Miao](https://scholar.google.com/citations?user=at4m2mYAAAAJ&hl=en), [Ziwei Liu](https://liuziwei7.github.io/) and [Stella X. Yu](http://www1.icsi.berkeley.edu/~stellayu/) at UC Berkeley/ICSI and NTU
+by [Xudong Wang](http://people.eecs.berkeley.edu/~xdwang/), [Long Lian](https://github.com/TonyLianLong/), [Zhongqi Miao](https://scholar.google.com/citations?user=at4m2mYAAAAJ&hl=en), [Ziwei Liu](https://liuziwei7.github.io/) and [Stella X. Yu](http://www1.icsi.berkeley.edu/~stellayu/) at UC Berkeley, ICSI and NTU
 
 <em>International Conference on Learning Representations (ICLR), 2021. **Spotlight Presentation**</em>
 
