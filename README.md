@@ -14,11 +14,11 @@ This repository contains an official re-implementation of RIDE from the authors,
 ## Citation
 If you find our work inspiring or use our codebase in your research, please consider giving a star ⭐ and a citation.
 ```
-@article{wang2020long,
-  title={Long-tailed recognition by routing diverse distribution-aware experts},
-  author={Wang, Xudong and Lian, Long and Miao, Zhongqi and Liu, Ziwei and Yu, Stella X},
-  journal={arXiv preprint arXiv:2010.01809},
-  year={2020}
+@inproceedings{wang2020long,
+  title={Long-tailed Recognition by Routing Diverse Distribution-Aware Experts},
+  author={Wang, Xudong and Lian, Long and Miao, Zhongqi and Liu, Ziwei and Yu, Stella},
+  booktitle={International Conference on Learning Representations},
+  year={2021}
 }
 ```
 
