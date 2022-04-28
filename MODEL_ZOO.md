@@ -68,5 +68,13 @@ Directory name:
 | **RIDE + Distill** | 4 | 72.6              | 70.9          | 72.5            | 73.1        | [Link](https://drive.google.com/file/d/1PdfWVQlsTjPFDr7bTFeUUskh2RA6Mb_r/view?usp=sharing)
 | *Teacher Model*    | 6 | 72.9              | 71.1          | 72.9            | 73.3        | [Link](https://drive.google.com/file/d/1DtLlx3be7WCmtVzoGBSGCiImQDJNxHGJ/view?usp=sharing)
 
+#### iNaturalist (Longer Training)
+1. RIDE + Distill: ResNet 50 backbone, 4 experts, with EA, 200 epochs (distilled from 6 experts, 200 epochs).
+2. RIDE: ResNet 50 backbone with 6 experts, without EA, 300 epochs.
+
+| Model          | #Experts | Overall Accuracy | Many Accuracy | Medium Accuracy | Few Accuracy | Download |
+| -------------- | -------- | ---------------- | ------------- | --------------- | ------------ | -------- |
+| **RIDE + Distill** | 4 |      73.2           | 70.5          | 73.7            | 73.3         | [Link](https://drive.google.com/drive/folders/1Kz-SwP6vRx7ktZhYWLmJLG6uprkj38vp?usp=sharing)
+| **RIDE**           | 6 |      74.6           | 71.0          | 75.7            | 74.3         | [Link](https://drive.google.com/drive/folders/1fyPJdgsLLTA7JE6uzUZmPanh1e1I8rKy?usp=sharing)
 
 After downloading the checkpoints, you could run evaluation by following the instructions in the test section.

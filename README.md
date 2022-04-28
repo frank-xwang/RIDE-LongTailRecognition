@@ -31,6 +31,8 @@ If you find our work inspiring or use our codebase in your research, please cons
 - [x] Decouple: tau-normalization (limited support for now)
 
 ## Updates
+[04/2022] We add additional iNaturalist checkpoints with more experts and longer training in model zoo.
+
 [04/2021] Pre-trained models are avaliable in model zoo.  
 
 [12/2020] We added an approximate GFLops counter. See usages below. We also refactored the code and fixed a few errors.  
