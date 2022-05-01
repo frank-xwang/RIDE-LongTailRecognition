@@ -9,7 +9,10 @@ by [Xudong Wang](http://people.eecs.berkeley.edu/~xdwang/), [Long Lian](https://
 
 <img src="title-img.png" width="100%" />
 
-This repository contains an official re-implementation of RIDE from the authors, while also has plans to support other works on long-tailed recognition. Further information please contact [Xudong Wang](mailto:xdwang@eecs.berkeley.edu) and [Long Lian](mailto:longlian@berkeley.edu).
+This repository contains an official re-implementation of RIDE from the authors, while also supports several other works on long-tailed recognition. Further information please contact [Xudong Wang](mailto:xdwang@eecs.berkeley.edu) and [Long Lian](mailto:longlian@berkeley.edu).
+
+
+**This repo has RIDE on ResNet and ResNeXt. For RIDE on Swin-Transformer, [see it here](https://github.com/TonyLianLong/RIDE-Swin-LongTailRecognition).**
 
 ## Citation
 If you find our work inspiring or use our codebase in your research, please consider giving a star ⭐ and a citation.
@@ -31,6 +34,8 @@ If you find our work inspiring or use our codebase in your research, please cons
 - [x] Decouple: tau-normalization (limited support for now)
 
 ## Updates
+[05/2022] We release an additional RIDE repo with Swin-Transformer. [Check it out](https://github.com/TonyLianLong/RIDE-Swin-LongTailRecognition).
+
 [04/2022] We add additional iNaturalist checkpoints with more experts and longer training in model zoo.
 
 [04/2021] Pre-trained models are avaliable in model zoo.  
